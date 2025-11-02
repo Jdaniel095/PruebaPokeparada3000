@@ -5,7 +5,8 @@ window.APP_CONFIG = {
   DRIVE_FOLDER_ID: "1SykigPCl4e003n6i2_PbopBrq22droo4",
   API_KEY: "AIzaSyAzq7mmTZTExpbetLRCkbopY5pDPBvOki4",
   SCOPES: "https://www.googleapis.com/auth/spreadsheets https://www.googleapis.com/auth/drive.readonly",
-  SHEET_URL: "https://script.google.com/macros/s/AKfycbzMmkEHWOUldOPCbYQDPl61JV42oUngZ92PtkROMISRqN_3p4r_YJimc2i4NwCAGTehQg/exec"
+  SHEET_URL: "https://script.google.com/macros/s/AKfycbxGpE5kTYXhcfZqknAggpuGsxPR513oABHkaqwsEM9CCi3edVCZpVWobrYSA-scGVj7Ww/exec"
 };
+
 
 
