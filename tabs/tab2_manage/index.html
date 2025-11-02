@@ -1,0 +1,313 @@
+<div class="section-card" id="form-gestion-card">
+  <div class="section-header">
+    <h2>Formulario de Gestión de Propuestas</h2>
+    <button class="toggle-btn" data-target="#form-gestion-content" title="Mostrar/Ocultar Formulario">+</button>
+  </div>
+
+  <div class="section-content" id="form-gestion-content" style="display:none;">
+
+   <!-- 📌 SECCIÓN SUPERIOR DEL FORMULARIO (DATOS FIJOS) -->
+<div class="form-top">
+
+  <div class="form-row">
+    <div class="form-group flex-1">
+      <label for="gestion-estado">Estado:</label>
+      <select id="gestion-estado">
+        <option value="En Cola" selected>En Cola (Por defecto)</option>
+        <option value="En Votacion">En Votación</option>
+      </select>
+    </div>
+
+    <div class="form-group flex-1">
+      <label for="gestion-nombre">Tu Nick (Wayfarer/PoGo):</label>
+      <input type="text" id="gestion-nombre" placeholder="TuNickAqui">
+      <small class="hint">Esta será tu 'contraseña' para editar.</small>
+    </div>
+  </div>
+
+  <div class="form-row">
+    <div class="form-group flex-1 small-field">
+      <label for="tipo-propuesta-select">Tipo de Propuesta:</label>
+      <select id="tipo-propuesta-select">
+        <option value="nueva">Propuesta de Pokeparada</option>
+        <option value="reubicacion">Propuesta con Reubicación</option>
+        <option value="mover">Movimiento de Pokeparada</option>
+      </select>
+    </div>
+
+    <div class="form-group flex-1 small-field align-right">
+      <label class="check-label-button compact-small">
+        <input type="checkbox" id="activar-masivo" class="check-toggle">
+        <span class="check-visual">✔</span>
+        Carga Masiva
+      </label>
+    </div>
+  </div>
+</div>
+
+<!-- 🔹 SEPARADOR VISUAL -->
+<hr class="form-separator">
+
+
+
+
+    <!-- ✅ 4. FORMULARIO: NUEVA PROPUESTA -->
+    <div id="form-nueva-propuesta">
+      <div class="form-row">
+        <div class="form-group flex-1">
+          <label for="nueva-titulo">Título:</label>
+          <input type="text" id="nueva-titulo" placeholder="Ej: Mural de la Amistad">
+        </div>
+        <div class="form-group flex-1">
+          <label for="nueva-coordenadas">Coordenadas (Opcional):</label>
+          <input type="text" id="nueva-coordenadas" class="geocode-trigger" placeholder="-12.045, -77.032">
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group flex-1">
+          <label for="nueva-img">ID Imagen (Opcional):</label>
+          <input type="text" id="nueva-img" placeholder="Pegar URL completa o solo ID...">
+        </div>
+      </div>
+      <input type="hidden" id="nueva-direccion">
+    </div>
+
+    <!-- ✅ 5. FORMULARIO: PROPUESTA CON REUBICACIÓN -->
+    <div id="form-reubicacion" style="display:none;">
+      <div class="form-row">
+        <div class="form-group flex-1">
+          <label for="nueva-titulo-reu">Título:</label>
+          <input type="text" id="nueva-titulo-reu" placeholder="Ej: Parque El Bosque">
+        </div>
+        <div class="form-group flex-1">
+          <label for="nueva-coordenadas-reu">Coordenadas Iniciales:</label>
+          <input type="text" id="nueva-coordenadas-reu" class="geocode-trigger" placeholder="-12.045, -77.032">
+        </div>
+      </div>
+
+      <div class="form-row">
+        <div class="form-group flex-1">
+          <label for="nueva-img-reu">ID Imagen (Opcional):</label>
+          <input type="text" id="nueva-img-reu" placeholder="URL o ID Google">
+        </div>
+        <div class="form-group flex-1" style="align-self:center; padding-top:15px;">
+          <label class="check-label-button">
+            <input type="checkbox" id="reubicacion-check" class="check-toggle">
+            <span class="check-visual">✔</span>
+            Sugerir Reubicación
+          </label>
+        </div>
+      </div>
+
+      <div id="fila-reubicacion-form" class="form-row" style="display:none;">
+        <div class="form-group flex-1">
+          <label for="nueva-coordenadas-reubicadas-reu">Coordenadas Reubicadas:</label>
+          <input type="text" id="nueva-coordenadas-reubicadas-reu" readonly placeholder="Seleccionar en el mapa...">
+        </div>
+        <button type="button" id="btn-ver-mapa-reubicacion-reu" class="btn-ver-mapa">Ver Mapa</button>
+      </div>
+    </div>
+
+    <!-- ✅ 6. FORMULARIO: MOVER POKEPARADA -->
+    <div id="form-mover-propuesta" style="display:none;">
+      <div class="form-row">
+        <div class="form-group flex-1">
+          <label for="mover-titulo">Título:</label>
+          <input type="text" id="mover-titulo" placeholder="Ej: Estatua del Fundador">
+        </div>
+        <div class="form-group flex-1">
+          <label for="mover-img">ID Imagen (Opcional):</label>
+          <input type="text" id="mover-img" placeholder="Pegar URL o ID">
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group flex-1">
+          <label for="mover-coor-actual">Coordenada Actual:</label>
+          <input type="text" id="mover-coor-actual" class="geocode-trigger" placeholder="-12.045, -77.032">
+        </div>
+        <div class="form-group flex-1">
+          <label for="mover-coor-modificada">Coordenada Modificada:</label>
+          <input type="text" id="mover-coor-modificada" placeholder="-12.046, -77.033">
+        </div>
+      </div>
+      <input type="hidden" id="mover-direccion">
+    </div>
+
+    <!-- ✅ 7. FORMULARIO MASIVO -->
+    <div id="form-masivo-propuesta" style="display:none;">
+      <h3 style="text-align:center; color:#1abc9c;">📥 Subir Varias Propuestas</h3>
+
+      <div class="form-group">
+        <label for="masivo-titulo">Título</label>
+        <input type="text" id="masivo-titulo">
+      </div>
+
+      <div class="form-group">
+        <label for="masivo-coor">Coordenadas</label>
+        <input type="text" id="masivo-coor">
+      </div>
+
+      <div class="form-group">
+        <label for="masivo-img">URL/ID Imagen (opcional)</label>
+        <input type="text" id="masivo-img">
+      </div>
+
+      <button type="button" id="btn-agregar-masiva" class="poke" style="width:100%;">➕ Agregar a lista</button>
+
+      <div id="lista-propuestas-masiva" style="margin-top:15px;">
+        <h4>📋 Propuestas agregadas: <span id="contador-masiva">0</span></h4>
+        <ul id="ul-propuestas-masiva"></ul>
+      </div>
+
+      <button type="button" id="btn-guardar-todas" class="primary" style="width:100%; margin-top:10px;">
+        ✅ Guardar todas
+      </button>
+    </div>
+
+    <!-- ✅ BOTÓN FINAL (INDIVIDUAL) -->
+    <button id="btn-guardar-propuesta" class="primary" style="width:100%; margin-top:15px;">
+      Subir Propuesta
+    </button>
+
+    <!-- ✅ BLOQUE PARA LISTA MASIVA (se mostrará solo si está activado el modo masivo) -->
+<div id="bloque-masivo-inline" style="display:none; margin-top:15px;">
+  <h4 style="color:#1abc9c;">📥 Propuestas en Lista: <span id="contador-masiva-inline">0</span></h4>
+  <ul id="lista-propuestas-inline" style="margin-bottom:15px;"></ul>
+  <button type="button" id="btn-guardar-todas-inline" class="primary" style="width:100%;">
+    ✅ Guardar todas
+  </button>
+</div>
+
+
+  </div>
+</div>
+
+
+<div class="section-card" id="buscador-card">
+  <div class="section-content">
+    <div class="form-group" style="margin-bottom: 0;">
+      <input type="search" id="buscador-propuesta" placeholder="🔎 Buscar por título...">
+    </div>
+  </div>
+</div>
+
+<div id="gestion-lista-tarjetas">
+  </div>
+
+<div id="mapModal" class="modal-map">
+  <div class="modal-map-content">
+    <h3>Reubicar Propuesta</h3>
+    <p>Haz clic en el mapa para seleccionar la nueva ubicación (marcador verde).</p>
+    
+    <div id="map-canvas" style="width: 90vw; max-width: 1000px; height: 70vh; background: #555; border-radius: 12px;">
+    </div>
+    
+    <div class="modal-map-buttons">
+      <button id="map-btn-guardar" class="primary">Guardar Ubicación</button>
+      <button id="map-btn-cancelar" class="poke">Cancelar</button>
+    </div>
+  </div>
+</div>
+
+
+
+<!-- ========================================================= -->
+<!-- 🆕 MODAL EXCLUSIVO PARA MINIATURAS DE MAPA -->
+<!-- ========================================================= -->
+<div id="mapModalMiniatura" class="modal">
+  <div class="modal-content">
+    <span id="mapMiniatura-btn-cerrar" class="modal-close">&times;</span>
+    <h2>Vista de Ubicación</h2>
+    <div id="map-canvas-miniatura" style="width:100%; height:400px; border-radius:12px;"></div>
+  </div>
+</div>
+
+<!-- Modal Editar Propuesta -->
+<div id="modal-editar" class="modal-editar">
+  <div class="modal-editar-contenido">
+
+    <!-- Cerrar (X) -->
+    <span id="modal-editar-cerrar" class="modal-editar-cerrar">&times;</span>
+
+    <h2>Editar Propuesta</h2>
+    <p class="subtexto-modal">
+      Confirma tu Nick (Wayfarer/PoGo):
+    </p>
+    <input type="text" id="editar-nick" class="input-text" placeholder="TuNickAquí">
+
+    
+    <hr>
+
+        <!-- Botón para validar nick antes de mostrar el resto -->
+    <button id="btn-validar-nick" class="btn-primario" style="margin-bottom:10px;">
+      ✅ Continuar
+    </button>
+
+
+    <div class="form-group">
+      <label>Título:</label>
+      <input type="text" id="edit-titulo" class="input-text">
+    </div>
+
+    <div class="form-group">
+      <label>ID/URL Imagen:</label>
+      <input type="text" id="edit-img" class="input-text">
+    </div>
+
+    <div class="form-row">
+      <div class="form-group half">
+        <label>Tipo de Propuesta:</label>
+        <select id="edit-tipo" class="input-select">
+          <option value="nueva">Propuesta de Pokeparada</option>
+          <option value="reubicacion">Propuesta con Reubicación</option>
+          <option value="mover">Movimiento de Pokeparada</option>
+        </select>
+      </div>
+      <div class="form-group half">
+        <label>Estado:</label>
+        <select id="edit-estado" class="input-select">
+          <option value="En Cola">En Cola</option>
+          <option value="En Votacion">En Votación</option>
+          <option value="Aceptada">Aceptada</option>
+          <option value="Rechazada">Rechazada</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label>Dirección (opcional):</label>
+      <input type="text" id="edit-direccion" class="input-text">
+    </div>
+
+    <div class="form-row">
+      <div class="form-group half">
+        <label>Coordenada Actual:</label>
+        <input type="text" id="edit-coor-actual" class="input-text">
+      </div>
+      <div class="form-group half">
+        <label>Coordenada Modificada:</label>
+        <div style="display:flex; gap:8px; align-items:center;">
+          <input type="text" id="edit-coor-modificada" class="input-text">
+          <button id="edit-abrir-mapa" class="btn-mapa-mini">🗺️</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="modal-editar-botones">
+      <button id="btn-guardar-edicion" class="btn-primario">✅ Guardar Cambios</button>
+      <button id="btn-cancelar-edicion" class="btn-secundario">Cancelar</button>
+    </div>
+
+  </div>
+</div>
+
+
+<script>
+  setTimeout(() => {
+    if (window.initTab2) {
+      window.initTab2();
+    } else {
+      console.error("Error: initTab2 no está definido. Asegúrate de que js/tab2_manage.js está cargado en index.html.");
+    }
+  }, 100); 
+</script>

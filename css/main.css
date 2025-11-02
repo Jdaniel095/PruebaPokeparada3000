@@ -1,0 +1,1369 @@
+/* ================================
+   🎨 ESTILO BASE
+=================================== */
+body {
+  background-color: #2c3e50;
+  font-family: 'Open Sans', sans-serif;
+  margin: 0;
+}
+
+/* ================================
+   📦 SECCIONES
+=================================== */
+.section-card {
+  background-color: #0a1a2f;
+  border-radius: 8px;
+  box-shadow: 0px 4px 8px rgba(0,0,0,0.3);
+  margin: 20px auto;
+  max-width: 800px;
+  overflow: hidden;
+}
+
+.section-header {
+  background-color: #3498db;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 15px;
+  cursor: pointer;
+}
+
+.section-header h2 {
+  margin: 0;
+  font-size: 1.2rem;
+  color: #fff;
+}
+
+.toggle-btn {
+  background: transparent;
+  border: none;
+  font-size: 1.5rem;
+  color: white;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.section-content {
+  padding: 15px;
+  color: #ecf0f1;
+  overflow: visible !important;
+}
+
+/* ================================
+   🎛️ BOTONES
+=================================== */
+button {
+  padding: 8px 14px;
+  border-radius: 6px;
+  border: 0;
+  cursor: pointer;
+  font-size: 14px;
+  transition: 0.2s;
+}
+
+button.primary { background: #074700; color: #fff; }
+button.primary:hover { background: #031A00; }
+
+button.secondary { background: #eee; }
+button.secondary:hover { background: #ddd; }
+
+button.poke { background: #3498db; color: #fff; }
+button.poke:hover { background: #1d6fa5; }
+
+button.acceso { background: orange; color: #fff; }
+button.acceso:hover { background: #e67e22; }
+
+/* ================================
+   🧭 NAVEGACIÓN SUPERIOR
+=================================== */
+#wrapper {
+  width: 600px;
+  margin: 40px auto 0;
+}
+
+#wrapper ul {
+  margin: 0;
+  padding: 0;
+  height: 60px;
+  list-style: none;
+  display: flex;
+  background-color: #34495e;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+#wrapper ul li {
+  flex: 1;
+  text-align: center;
+  border-right: 1px solid #2c3e50;
+}
+
+#wrapper ul li:last-child { border-right: none; }
+
+#wrapper ul li a {
+  display: block;
+  text-decoration: none;
+  color: #ecf0f1;
+  line-height: 60px;
+  font-weight: bold;
+}
+
+#wrapper ul li a.active,
+#wrapper ul li a:hover {
+  background-color: #1abc9c;
+  color: #fff;
+}
+
+#tab-content {
+  margin-top: 20px;
+  width: 100%;
+  min-height: 400px;
+}
+
+/* ================================
+   💠 TARJETAS BASE (otros módulos)
+=================================== */
+.card {
+  display: grid;
+  grid-template-rows: 210px 60px 150px 80px;
+  grid-template-areas:
+    "image"
+    "text"
+    "map"
+    "stats";
+  border-radius: 18px;
+  background: white;
+  box-shadow: 5px 5px 15px rgba(0,0,0,0.2);
+  text-align: center;
+  transition: 0.5s ease;
+  cursor: pointer;
+  margin: 20px;
+}
+
+.card:hover {
+  box-shadow: 5px 5px 15px rgba(0,0,0,0.5);
+}
+
+.card-image {
+  grid-area: image;
+  background: url('../assets/map_placeholder.jpg') center/cover no-repeat;
+  border-top-left-radius: 15px;
+  border-top-right-radius: 15px;
+}
+
+.card-map {
+  grid-area: map;
+  padding: 0;
+}
+
+.card-map img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.card-text {
+  grid-area: text;
+  background: #0b84ff;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.card-text.gym { background: #ff9800; }
+
+.card-text h2 { margin: 0; font-size: 25px; }
+
+.card-stats {
+  grid-area: stats;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  background: #0b84ff;
+  color: white;
+}
+
+.card-stats.gym { background: #ff9800; }
+
+/* ================================
+   🖼️ GALERÍA DE IMÁGENES (Drive)
+=================================== */
+#filesList {
+  display: grid !important;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 14px;
+  width: 100%;
+  margin-top: 15px;
+}
+
+@media (max-width: 768px) {
+  #filesList { grid-template-columns: repeat(2, 1fr); }
+}
+
+#filesList .drive-thumb {
+  position: relative;
+  background: #0a1a2f;
+  border: 2px solid #007b80;
+  border-radius: 12px;
+  overflow: hidden;
+  aspect-ratio: 1.3 / 1;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+#filesList .drive-thumb:hover {
+  transform: scale(1.03);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.4);
+}
+
+#filesList img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* ================================
+   ✅ CHECKS EN IMÁGENES
+=================================== */
+#filesList .file-wrapper {
+  position: absolute;
+  top: 10px;
+  z-index: 10;
+}
+
+#filesList .file-wrapper.left { left: 10px; }
+#filesList .file-wrapper.right { right: 10px; }
+
+#filesList .file-toggle { display: none; }
+
+#filesList .file-check {
+  width: 26px;
+  height: 26px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  border: 2px solid #0b84ff;
+  background: #fff;
+  color: #0b84ff;
+  font-size: 15px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+#filesList .file-toggle:checked + .file-check {
+  background: #0b84ff;
+  color: #fff;
+}
+
+#filesList .file-check.acceso {
+  border-color: orange;
+  color: orange;
+}
+
+#filesList .file-toggle:checked + .file-check.acceso {
+  background: orange;
+  color: white;
+}
+
+/* ================================
+   🗺️ MODAL MAPA
+=================================== */
+.modal-map {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background: rgba(0,0,0,0.85);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+}
+
+.modal-map-content {
+  background: #fff;
+  padding: 10px;
+  border-radius: 12px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.modal-map-iframe {
+  width: 90vw;
+  max-width: 1000px;
+  height: 70vh;
+  border-radius: 12px;
+  border: 2px solid #444;
+  object-fit: cover;
+}
+
+.modal-map-buttons {
+  margin-top: 6px;
+  text-align: center;
+}
+
+.modal-map-buttons button {
+  padding: 6px 10px;
+  font-size: 0.9em;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+.modal-map-buttons button.primary {
+  background: #1e88e5; color: #fff;
+}
+
+.modal-map-buttons button.primary:hover {
+  background: #1565c0;
+}
+
+.modal-map-buttons button.poke {
+  background: #c62828; color: #fff;
+}
+
+.modal-map-buttons button.poke:hover {
+  background: #e53935;
+}
+
+/* ================================
+   ✨ SECCIÓN 5 — Tarjetas de Propuestas
+=================================== */
+.tarjeta-propuesta {
+  display: grid;
+  grid-template-columns: 1fr 2fr 1fr;
+  gap: 15px;
+  background: rgba(15, 34, 57, 0.9);
+  border-radius: 18px;
+  border: 1px solid rgba(255,255,255,0.08);
+  box-shadow: 0 6px 18px rgba(0,0,0,0.25);
+  padding: 15px;
+  color: #e6eef8;
+  align-items: center;
+  transition: all 0.3s ease;
+  backdrop-filter: blur(8px);
+  overflow: hidden;
+  margin-bottom: 20px;
+}
+
+
+.tarjeta-propuesta:hover {
+  transform: scale(1.01);
+  background: rgba(18, 46, 78, 0.95);
+}
+
+/* Imagen izquierda y mapa */
+.tarjeta-propuesta .imagen-izq,
+.tarjeta-propuesta .mapa-derecha {
+  height: 180px;
+  overflow: hidden;
+  border-radius: 12px;
+}
+
+.tarjeta-propuesta .imagen-izq img,
+.tarjeta-propuesta .mapa-derecha img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.4s ease;
+  border-radius: 12px;
+}
+
+.tarjeta-propuesta:hover .imagen-izq img,
+.tarjeta-propuesta:hover .mapa-derecha img {
+  transform: scale(1.05);
+}
+
+/* Contenido central */
+.tarjeta-propuesta .contenido-central {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 8px;
+  text-align: center;
+  padding: 10px;
+}
+
+.tarjeta-propuesta .contenido-central div {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-size: 0.95rem;
+}
+
+.tarjeta-propuesta .contenido-central div:hover {
+  white-space: normal;
+  background: rgba(0,0,0,0.3);
+  border-radius: 8px;
+  padding: 6px;
+}
+
+/* Colores de texto */
+.tarjeta-propuesta .contenido-central div:nth-child(1) b { color: #00b8ff; }
+.tarjeta-propuesta .contenido-central div:nth-child(2) b { color: #8eff8e; }
+.tarjeta-propuesta .contenido-central div:nth-child(3) b { color: #ffc266; }
+
+/* Botón copiar */
+.tarjeta-propuesta .copy-btn {
+  margin-left: 6px;
+  background: #1a73e8;
+  border: none;
+  border-radius: 6px;
+  padding: 3px 7px;
+  cursor: pointer;
+  color: #fff;
+  font-weight: bold;
+  font-size: 0.8em;
+  transition: background 0.2s ease;
+}
+
+.tarjeta-propuesta .copy-btn:hover { background: #1558b0; }
+
+/* Dirección y coordenadas */
+.tarjeta-propuesta .direccion {
+  margin-top: 6px;
+  font-size: 0.85em;
+  color: #ccc;
+}
+
+.tarjeta-propuesta .coordenadas {
+  font-size: 0.8em;
+  color: #aaa;
+}
+
+
+
+
+
+.tarjeta-propuesta:hover {
+  border-color: rgba(255, 255, 255, 0.5) !important;
+  box-shadow: 0 0 12px rgba(255, 255, 255, 0.2) !important;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .tarjeta-propuesta {
+    grid-template-columns: 1fr;
+    text-align: center;
+  }
+
+  .tarjeta-propuesta .imagen-izq,
+  .tarjeta-propuesta .mapa-derecha {
+    height: 150px;
+  }
+
+  .tarjeta-propuesta .contenido-central div {
+    white-space: normal;
+  }
+}
+
+
+/* Bordes personalizados según tipo */
+.tarjeta-propuesta.tag-nueva {
+  border: 2px solid #3498db; /* Celeste */
+  box-shadow: 0 0 10px rgba(52, 152, 219, 0.3);
+}
+
+.tarjeta-propuesta.tag-reubicada {
+  border: 2px solid #e91e63; /* Rosado */
+  box-shadow: 0 0 10px rgba(233, 30, 99, 0.3);
+}
+
+.tarjeta-propuesta.tag-mover {
+  border: 2px solid #9b59b6; /* Morado */
+  box-shadow: 0 0 10px rgba(155, 89, 182, 0.3);
+}
+
+
+
+/* ================================
+   🎨 ESTILOS PARA FORMULARIO Y BUSCADOR
+=================================== */
+
+/* Contenedor de cada línea del formulario */
+.form-group {
+  margin-bottom: 15px;
+}
+
+/* Etiquetas (Texto arriba del campo) */
+.form-group label {
+  display: block;
+  margin-bottom: 5px;
+  color: #ecf0f1; /* Texto blanco/gris claro */
+  font-weight: 600;
+  font-size: 0.9rem;
+}
+
+/* Estilo para los inputs de texto, search y select */
+.form-group input[type="text"],
+.form-group input[type="search"],
+.form-group select {
+  width: 100%;
+  padding: 10px 12px;
+  background-color: #2c3e50; /* Fondo oscuro (del body) */
+  border: 1px solid #34495e;  /* Borde (de la nav) */
+  border-radius: 6px;
+  color: #ecf0f1;
+  font-size: 1rem;
+  box-sizing: border-box; /* Para que el padding no rompa el ancho */
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+/* Efecto al seleccionar el campo */
+.form-group input[type="text"]:focus,
+.form-group input[type="search"]:focus,
+.form-group select:focus {
+  outline: none;
+  border-color: #1abc9c; /* Color verde/activo de la nav */
+  box-shadow: 0 0 8px rgba(26, 188, 156, 0.3);
+}
+
+/* Estilo para los Radio buttons (selector) */
+.form-group input[type="radio"],
+.form-group input[type="checkbox"] {
+  margin-right: 5px;
+  vertical-align: middle;
+}
+
+/* Texto al lado de los radio buttons */
+.form-group label.radio-label {
+  display: inline-block;
+  color: #ecf0f1;
+  margin-right: 20px;
+  font-weight: normal;
+  cursor: pointer;
+}
+
+/* Separador */
+hr.form-divider {
+  border: 0;
+  border-top: 1px solid #34495e;
+  margin: 25px 0;
+}
+
+/* ================================
+   🎨 ESTILOS FORMULARIO HORIZONTAL
+=================================== */
+
+/* Fila que contendrá campos */
+.form-row {
+  display: flex;
+  flex-wrap: wrap; /* Si no caben, se van abajo */
+  gap: 15px;      /* Espacio entre campos */
+  margin-bottom: 15px;
+}
+
+/* Hace que un campo ocupe el espacio disponible */
+.form-group.flex-1 {
+  flex: 1; /* Crece para ocupar espacio */
+  min-width: 200px; /* Ancho mínimo antes de romperse */
+  margin-bottom: 0; /* Ya tenemos gap en form-row */
+}
+
+/* Modal del Mapa (ya tenías estilos, solo ajusto el display) */
+.modal-map {
+  display: none; /* Oculto por defecto */
+  /* ... (tus otros estilos de modal-map) ... */
+}
+
+.modal-map.visible {
+  display: flex; /* Se muestra al hacer clic */
+}
+
+/* ================================
+   🔘 RADIO-BUTTON ESTILO CHECK (Formulario)
+=================================== */
+
+/* Ocultamos el radio button real */
+.form-group .radio-check-toggle {
+  display: none;
+}
+
+/* Creamos el "check" visual circular */
+.form-group .radio-check-visual {
+  width: 26px;
+  height: 26px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%; /* Círculo perfecto */
+  border: 2px solid #3498db; /* Usamos el azul de tu cabecera */
+  background: #fff;
+  color: #3498db;
+  font-size: 15px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  margin-right: 8px; /* Espacio entre el check y el texto */
+  vertical-align: middle;
+}
+
+/*
+ * Cuando el radio-button real está activo (checked)...
+ * seleccionamos (~) el .radio-check-visual que le sigue
+ */
+.form-group .radio-check-toggle:checked + .radio-check-visual {
+  background: #3498db; /* ...el fondo se vuelve azul... */
+  color: #fff;         /* ...y el tick se vuelve blanco */
+}
+
+/* Etiqueta (label) que envuelve todo */
+.form-group label.radio-check-label {
+  display: inline-flex;
+  align-items: center;
+  cursor: pointer;
+  font-weight: 600; /* Texto más grueso */
+  color: #ecf0f1;
+  margin: 0 10px; /* Espacio entre los dos botones */
+}
+
+
+/* ================================
+   🎨 ESTILOS FORMULARIO (MEJORAS)
+=================================== */
+
+/* 1. Estilo para que el CHECKBOX parezca un BOTÓN */
+.check-label-button {
+  display: inline-block;
+  padding: 10px 14px;
+  background-color: #3498db; /* Azul (como tu .poke) */
+  color: #fff;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: 0.2s;
+  font-weight: 600;
+  user-select: none; /* Evita que se seleccione el texto */
+}
+
+.check-label-button:hover {
+  background-color: #1d6fa5;
+}
+
+/* Ocultamos el checkbox real que está "dentro" del label */
+.check-label-button .check-toggle {
+  display: none;
+}
+
+/* Cuando está marcado, cambiamos el color del botón */
+.check-label-button .check-toggle:checked + .check-visual {
+  background: #2ecc71; /* Verde "activo" */
+  color: #fff;
+  border-color: #2ecc71;
+}
+
+/* El check visual (✔) */
+.check-label-button .check-visual {
+  width: 22px;
+  height: 22px;
+  font-size: 14px;
+  margin-right: 8px; /* Espacio entre check y texto */
+  /* Reusamos el estilo que ya tenías */
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  border: 2px solid #fff; /* Borde blanco sobre fondo azul */
+  background: rgba(0,0,0,0.2);
+  color: #eee;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  vertical-align: middle;
+}
+
+
+/* 2. Fila del formulario para la reubicación */
+.form-row-reubicacion {
+  display: flex;
+  gap: 10px;
+  align-items: flex-end; /* Alinea el botón con el input */
+}
+
+/* Hacemos que el input ocupe el espacio */
+.form-row-reubicacion .form-group {
+  flex: 1; /* Crece */
+  margin-bottom: 0;
+}
+
+/* Input de solo lectura (para las coords) */
+.form-row-reubicacion input[readonly] {
+  background-color: #2c3e50;
+  color: #95a5a6; /* Texto gris */
+  cursor: not-allowed;
+}
+
+/* Botón "Ver Mapa" */
+.form-row-reubicacion .btn-ver-mapa {
+  padding: 10px 12px;
+  flex-shrink: 0; /* No se encoge */
+  /* Reusa tus estilos de botón */
+  background: #eee;
+  color: #333;
+  border: 0;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: 0.2s;
+  height: 44px; /* Misma altura que el input */
+}
+.form-row-reubicacion .btn-ver-mapa:hover {
+  background: #ddd;
+}
+
+/* ================================
+   🎨 ESTILOS PARA ESTADO DE TARJETA
+=================================== */
+
+.prop-estado {
+  padding: 4px 10px;
+  border-radius: 12px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: #fff;
+  display: inline-block;
+  margin-bottom: 8px !important;
+}
+
+.prop-estado.estado-votacion {
+  background-color: #27ae60; /* Verde */
+}
+
+.prop-estado.estado-cola {
+  background-color: #f39c12; /* Naranja */
+}
+
+/* Mejora para el texto de coordenadas en las tarjetas */
+.tarjeta-propuesta .ubicacion p {
+  margin: 4px 0 !important;
+  font-size: 0.8rem;
+  color: #bdc3c7; /* Un gris más claro */
+}
+
+.tarjeta-propuesta .ubicacion p b {
+  color: #ecf0f1; /* Blanco para la etiqueta */
+}
+
+
+/* =========================================================
+   🧩 ESTILO ÚNICO PARA PESTAÑA 2 (GESTIONAR)
+   Adaptado a tu diseño de .card (vertical con grid)
+========================================================= */
+
+/* 1. El contenedor (Grid de 3 columnas) */
+#gestion-lista-tarjetas {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 400px)); /* ancho mínimo 300px, máximo 400px */
+  justify-content: center; /* centra las tarjetas si hay pocas */
+  gap: 20px;
+  padding: 20px;
+  max-width: 1350px;
+  margin: 0 auto;
+}
+
+/* 2. La tarjeta (EL PADRE) */
+.gestion-card {
+  display: grid; 
+  grid-template-rows: 180px auto 150px; 
+  grid-template-areas:
+    "image"
+    "content"
+    "map";
+  background: #0d1b2a; 
+  border-radius: 12px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.4);
+  border: 5px solid rgba(255,255,255,1.0);
+  overflow: hidden; 
+  position: relative; 
+  transform: none !important; 
+}
+
+/* 3. Área de Imagen */
+.gestion-card .imagen-area {
+  grid-area: image; 
+  position: relative; 
+  overflow: hidden; 
+  border-bottom: 1px solid rgba(255,255,255,0.1);
+}
+
+.gestion-card .imagen-principal {
+  width: 100%;      
+  height: 100%;     
+  object-fit: cover;
+  border-radius: 0; 
+}
+
+/* 4. Área de Contenido */
+.gestion-card .contenido {
+  grid-area: content; 
+  display: flex;
+  flex-direction: column;
+  padding: 15px;
+  text-align: center; 
+}
+
+/* 5. Área de Mapa */
+.gestion-card .mapa {
+  grid-area: map; 
+  width: 100%;    
+  height: 100%;   
+  position: relative; 
+  border-top: 1px solid rgba(255,255,255,0.1);
+}
+
+/* 6. El Iframe (Nieto) */
+.gestion-card .mapa iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border: none;
+  border-radius: 0;
+}
+
+/* ==================================
+   7. Estilos internos del contenido (¡CAMBIOS AQUÍ!)
+   ================================== */
+.gestion-card .prop-titulo {
+  text-align: center;
+  font-weight: bold;
+  font-size: 1.2rem;
+  margin-bottom: 10px;
+  text-transform: uppercase;
+  color: #ffffff;
+}
+
+/* Estilo para el contenedor de ubicación */
+.gestion-card .ubicacion {
+  font-size: 0.95rem;  
+  text-align: left;    /* <-- VUELVE A LA IZQUIERDA */
+  margin-top: 10px;
+  color: #ecf0f1;     
+}
+.gestion-card .ubicacion p {
+  margin: 8px 0 !important; 
+}
+
+/* Estilo general para las etiquetas <b> */
+.gestion-card .ubicacion p b {
+  min-width: 110px;     
+  display: inline-block; /* <-- VUELVE A INLINE-BLOCK */
+  font-weight: 700; 
+}
+
+/* ¡COLORES TEMÁTICOS PARA CADA ETIQUETA! */
+.gestion-card .ubicacion p:nth-child(1) b { /* Dirección */
+  color: #f39c12; /* Naranja/Amarillo */
+}
+.gestion-card .ubicacion p:nth-child(2) b { /* Original (Rojo) */
+  color: #e74c3c; /* Rojo */
+}
+.gestion-card .ubicacion p:nth-child(3) b { /* Reubicada (Verde) */
+  color: #27ae60; /* Verde */
+}
+
+
+/* .tag-container para tags de ESTADO (dentro del contenido) */
+.gestion-card .tag-container {
+  display: flex;
+  flex-wrap: wrap; 
+  gap: 8px;        
+  margin-bottom: 12px;
+  align-items: center; 
+  justify-content: center;
+}
+
+/* Estilos para tags */
+.prop-tag {
+  font-size: 0.75rem;
+  font-weight: 600;
+  padding: 5px 10px;
+  border-radius: 6px;
+  color: #fff;
+  text-align: center;
+  user-select: none; 
+}
+.prop-tag.tag-nueva { background-color: #3498db; } /* Celeste */
+.prop-tag.tag-reubicada { background-color: #e91e63; } /* Rosado */
+.prop-tag.tag-mover { background-color: #9b59b6; } /* Morado */
+.prop-tag.estado-votacion { background-color: #27ae60; }
+.prop-tag.estado-cola { background-color: #f39c12; }
+
+
+/* ¡BOTÓN EDITAR (Relativo a .imagen-area)! */
+.gestion-card .btn-editar-propuesta {
+  position: absolute; 
+  top: 10px;          
+  right: 10px;        
+  z-index: 10;        
+  background: rgba(26, 188, 156, 0.9); 
+  color: #fff;
+  padding: 8px 12px;
+  border-radius: 8px;
+  font-weight: bold;
+  font-size: 0.9rem;
+  transition: background 0.2s ease, transform 0.2s ease;
+  border: none;
+  cursor: pointer;
+}
+
+.gestion-card .btn-editar-propuesta:hover {
+  background: #1abc9c; 
+  transform: scale(1.05); 
+}
+
+/* ¡TAG DE TIPO (Relativo a .imagen-area)! */
+.gestion-card .tag-tipo-propuesta {
+  position: absolute;
+  bottom: 10px;       
+  left: 50%;          
+  transform: translateX(-50%); 
+  z-index: 10;
+  padding: 6px 12px;
+  border-radius: 8px;
+  font-size: 0.85rem;
+  font-weight: bold;
+  color: #fff;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.3);
+  white-space: nowrap; 
+}
+
+/* Quitamos las acciones originales del pie */
+.gestion-card .acciones {
+  display: none; 
+}
+
+
+/* Responsive para tablets */
+@media (max-width: 1024px) {
+  #gestion-lista-tarjetas {
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  }
+}
+
+/* Responsive para móviles */
+@media (max-width: 720px) {
+  #gestion-lista-tarjetas {
+    grid-template-columns: 1fr; /* solo una tarjeta por fila */
+    justify-items: center; /* centra la tarjeta */
+  }
+}
+
+
+/* =========================================================
+   🆕 MODAL MINIATURA (Vista de mapa desde la tarjeta)
+========================================================= */
+#mapModalMiniatura {
+  display: none;
+  position: fixed;
+  z-index: 2000;
+  left: 0; top: 0;
+  width: 100%; height: 100%;
+  background-color: rgba(0,0,0,0.75);
+  justify-content: center;
+  align-items: center;
+}
+
+#mapModalMiniatura.visible {
+  display: flex;
+}
+
+#mapModalMiniatura .modal-content {
+  background: #0a1a2f;
+  padding: 20px;
+  border-radius: 12px;
+  width: 90%;
+  max-width: 600px;
+  color: #fff;
+}
+
+#mapMiniatura-btn-cerrar {
+  float: right;
+  font-size: 24px;
+  cursor: pointer;
+}
+
+
+/* ✅ Estética alineada y simétrica */
+.form-row-inline {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  margin-bottom: 15px;
+}
+
+/* Mantiene el select de altura igual a inputs */
+.input-normal {
+  height: 44px;
+  line-height: 44px;
+}
+
+/* Checkbox al nivel del select */
+.form-masiva-toggle {
+  display: flex;
+  align-items: center;
+  margin-top: 45px; /* Ajuste visual exacto */
+}
+
+/* Botón/checkbox estilizado más compacto y alineado */
+.check-label-button.align-center {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 0px 12px;
+  height: 10px;
+}
+
+/* Asegura que el icono ✔ esté centrado */
+.check-label-button .check-visual {
+  width: 20px;
+  height: 20px;
+  font-size: 13px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+
+/* ✅ Hace que el select no sea tan largo */
+.input-compact {
+  width: auto;              /* Se ajusta al contenido */
+  min-width: 220px;         /* Ancho mínimo */
+  max-width: 280px;         /* No ocupa toda la fila */
+}
+
+/* ✅ Acomoda todo en la misma línea y centrado */
+.form-row.align-center {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 15px;
+}
+
+/* ✅ Carga masiva alineado y delgado */
+.form-masiva-toggle {
+  display: flex;
+  align-items: center;
+  margin-top: 22px; /* Ajuste para estar al nivel del select */
+}
+
+.check-label-button.align-center {
+  padding: 5px 10px;
+  font-size: 0.85rem;
+  height: 36px;
+}
+
+.check-label-button .check-visual {
+  width: 16px;
+  height: 16px;
+  font-size: 11px;
+}
+
+
+/* ✅ Fila compacta donde ambos elementos quedan juntos */
+.compact-row {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  margin-bottom: 15px;
+}
+
+/* ✅ Hace que ni el select ni el checkbox sean tan largos */
+.group-small {
+  flex: 0 0 auto;
+}
+
+/* ✅ Select más estilizado y estrecho */
+.input-compact {
+  width: 250px;
+  padding: 8px 10px;
+}
+
+/* ✅ Check "Carga Masiva" más pequeño y centrado vertical */
+.small-check {
+  padding: 6px 10px;
+  height: 38px;
+  display: inline-flex;
+  align-items: center;
+}
+
+/* ✅ Icono del check más pequeño */
+.small-check .check-visual {
+  width: 16px;
+  height: 16px;
+  font-size: 11px;
+  margin-right: 6px;
+}
+
+
+/* 📍 Alinear y bajar visualmente el botón de "Carga Masiva" */
+.form-group.align-right {
+
+  padding-bottom: 4px;        /* 🔹 Ajusta este valor para subir/bajar */
+}
+
+/* Botón compacto – asegura que tenga misma altura vertical */
+.check-label-button.compact-small {
+  height: 30px;              /* Igual al select */
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+/* Ícono ✔ más centrado */
+.check-label-button.compact-small .check-visual {
+  width: 16px;
+  height: 16px;
+  font-size: 11px;
+}
+
+/* 📍 Alinear perfectamente el checkbox de "Carga Masiva" con el select */
+.form-row .form-group.align-right {
+  display: flex;
+  align-items: flex-end;      /* Lo baja al mismo nivel visual */
+  justify-content: flex-start;
+  padding-bottom: 0px;        /* 🔹 Ajusta este valor si quieres bajarlo/subirlo más */
+}
+
+/* Botón compacto y simétrico con el select */
+.check-label-button.compact-small {
+  height: 40px;               /* Igual altura que el select */
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 12px;
+  box-sizing: border-box;
+}
+
+/* ✔ del checkbox bien centrado y proporcional */
+.check-label-button.compact-small .check-visual {
+  width: 16px;
+  height: 16px;
+  font-size: 11px;
+  line-height: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+
+/* Estados visuales en tarjetas */
+.gestion-card.accepted {
+  border: 3px solid #2ecc71; /* verde */
+}
+.gestion-card.rejected {
+  border: 3px solid #e74c3c; /* rojo */
+}
+
+
+.modal-editar {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background: rgba(0,0,0,0.6);
+  display: none;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+}
+
+.modal-editar.visible {
+  display: flex;
+}
+
+.modal-editar-contenido {
+  background: #0f1d2b;
+  color: white;
+  padding: 20px;
+  border-radius: 12px;
+  width: 600px;
+  max-height: 90vh;
+  overflow-y: auto;
+  position: relative;
+}
+
+.modal-editar-cerrar {
+  position: absolute;
+  right: 15px;
+  top: 10px;
+  cursor: pointer;
+  font-size: 1.5rem;
+}
+
+#mapModal {
+  z-index: 10000 !important;
+}
+
+#modal-editar {
+  z-index: 9000 !important;
+}
+
+
+/* =========================================================
+   🎯 ESTILOS DEL MODAL DE EDITAR PROPUESTA (NUEVO)
+   – Sin scroll horizontal
+   – Con colores, sombras y estilo moderno
+   – Compatible con tu diseño actual
+========================================================= */
+
+/* Fondo del modal */
+#modal-editar {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100vw; height: 100vh;
+  background: rgba(0,0,0,0.6);
+  backdrop-filter: blur(6px);
+  display: none;              /* Oculto por defecto */
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;           /* ✅ Quita scroll horizontal */
+  z-index: 9999;
+}
+
+#modal-editar.visible {
+  display: flex;
+}
+
+/* Contenedor principal del modal */
+.modal-editar-contenido {
+  background: rgba(20, 32, 47, 0.95);    /* Efecto vidrio */
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: 16px;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.45);
+  width: 95%;
+  max-width: 540px;
+  max-height: 85vh;
+  overflow-y: auto;           /* ✅ Solo scroll vertical si hace falta */
+  overflow-x: hidden;
+  padding: 30px;
+  color: #fff;
+  animation: fadeIn 0.25s ease;
+  position: relative;
+}
+
+/* Botón de cerrar (X) */
+.modal-editar-cerrar {
+  position: absolute;
+  top: 12px; right: 15px;
+  font-size: 1.6rem;
+  cursor: pointer;
+  color: #fff;
+  transition: 0.2s;
+}
+.modal-editar-cerrar:hover {
+  color: #1abc9c;
+}
+
+/* Título del modal */
+#modal-editar h2 {
+  font-size: 1.4rem;
+  font-weight: bold;
+  text-align: center;
+  margin-bottom: 5px;
+}
+
+/* Subtexto debajo del título */
+.subtexto-modal {
+  text-align: center;
+  color: #b0bec5;
+  font-size: 0.9rem;
+  margin-bottom: 15px;
+}
+
+/* Separador */
+.modal-editar-contenido hr {
+  border: none;
+  border-top: 1px solid rgba(255,255,255,0.15);
+  margin: 12px 0 20px 0;
+}
+
+/* Inputs y selects */
+#modal-editar input[type="text"],
+#modal-editar select {
+  width: 100%;
+  padding: 10px;
+  border-radius: 10px;
+  border: 1px solid rgba(255,255,255,0.2);
+  background: rgba(255,255,255,0.08);
+  color: #fff;
+  margin-bottom: 12px;
+  font-size: 0.95rem;
+  transition: 0.2s;
+}
+
+#modal-editar input:focus,
+#modal-editar select:focus {
+  border-color: #1abc9c;
+  outline: none;
+  background: rgba(255,255,255,0.12);
+}
+
+/* ✅ Select – corregido para evitar texto blanco sobre blanco */
+#modal-editar select {
+  background-color: rgba(0,0,0,0.4);
+  color: #fff;
+}
+#modal-editar select option {
+  background: #1b2b40;
+  color: #fff;
+}
+
+/* Botón para validar nick */
+#btn-validar-nick {
+  width: 100%;
+  padding: 10px;
+  border: none;
+  border-radius: 10px;
+  background: #1abc9c;
+  color: #fff;
+  font-weight: bold;
+  cursor: pointer;
+  transition: 0.2s;
+  margin-bottom: 15px;
+}
+#btn-validar-nick:hover {
+  background: #17a589;
+}
+
+/* Botones finales */
+.modal-editar-botones {
+  display: flex;
+  gap: 10px;
+  margin-top: 20px;
+}
+
+.modal-editar-botones .btn-primario {
+  flex: 1;
+  background: #1abc9c;
+  border: none;
+  padding: 10px;
+  border-radius: 10px;
+  color: #fff;
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.2s;
+}
+.modal-editar-botones .btn-primario:hover {
+  background: #16a085;
+}
+
+.modal-editar-botones .btn-secundario {
+  flex: 1;
+  background: rgba(255,255,255,0.12);
+  border: 1px solid rgba(255,255,255,0.2);
+  padding: 10px;
+  border-radius: 10px;
+  color: #fff;
+  cursor: pointer;
+  transition: 0.2s;
+}
+.modal-editar-botones .btn-secundario:hover {
+  background: rgba(255,255,255,0.25);
+}
+
+/* Animación */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(-10px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
