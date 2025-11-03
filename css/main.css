@@ -1367,3 +1367,48 @@ hr.form-divider {
   from { opacity: 0; transform: translateY(-10px); }
   to   { opacity: 1; transform: translateY(0); }
 }
+
+/* ✅ Menú superior adaptable */
+#nav-tabs {
+  display: flex;
+  justify-content: space-around;
+  background: #1e2b3a;
+  padding: 10px;
+  gap: 5px;
+}
+
+#nav-tabs .tab-link {
+  flex: 1;
+  text-align: center;
+  padding: 12px 5px;
+  color: #fff;
+  text-decoration: none;
+  font-weight: 600;
+  background: #2c3e50;
+  border-radius: 8px;
+  transition: background 0.3s;
+}
+
+#nav-tabs .tab-link.active {
+  background: #27ae60;
+}
+
+/* ✅ Ajustes exclusivos para móviles */
+@media (max-width: 600px) {
+  #nav-tabs {
+    gap: 3px;
+  }
+  #nav-tabs .tab-link {
+    font-size: 0.85rem;
+    padding: 10px 0;
+  }
+
+  .section-card {
+    margin: 10px;
+    width: calc(100% - 20px);
+  }
+
+  #resultadosContainer {
+    grid-template-columns: 1fr !important;
+  }
+}
