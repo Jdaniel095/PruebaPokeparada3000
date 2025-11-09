@@ -1,0 +1,238 @@
+<!-- tabs/tab1_generate/index.html -->
+<div class="sections-wrapper">
+
+  
+
+    <!-- 💾 NOMBRE DE SESIÓN -->
+  <div class="section-card" style="border-left:5px solid #2ecc71;">
+    <div class="section-header">
+      <h2>🗂️ Sesión Temporal</h2>
+    
+    </div>
+
+    <div class="section-content">
+      <div style="display:flex;flex-wrap:wrap;gap:10px;align-items:center;">
+        <input type="text" id="inputNombreSesion" placeholder="Escribe un nombre para la sesión..." style="flex:1;min-width:200px;" />
+        <button id="btnGuardarSesion" class="primary">💾 Guardar Sesión Temporal</button>
+      </div>
+      <p style="margin-top:8px;color:#555;font-size:0.9em;">
+        * Recuerda guardar la sesión antes de agregar fotos o generar collage.
+      </p>
+    </div>
+  </div>
+
+
+  <!-- 🖼️ SECCIÓN 1: SELECCIÓN DE FOTOS -->
+  <div class="section-card">
+    <div class="section-header">
+      <h2>1.- Selección de Fotos</h2>
+      <button class="toggle-btn">−</button>
+    </div>
+
+    <div class="section-content">
+      <!-- Controles -->
+      <div class="controls-row" style="display:flex;flex-wrap:wrap;gap:10px;align-items:center;">
+        <button id="btnRefresh" class="secondary">Refrescar</button>
+        <button id="btnSelectAll" class="secondary">Seleccionar todo</button>
+        <button id="btnClearPoke" class="poke">Limpiar Poképaradas</button>
+        <button id="btnClearAcceso" class="acceso">Limpiar Accesos</button>
+        <button id="btnClearAll" class="secondary">Limpiar Todo</button>
+
+
+        <!-- Contador -->
+        <div id="filesCounter" style="margin-left:auto; font-weight:bold; display:flex; gap:12px;">
+          <span>Total: 0</span>
+          <span style="color:#3498db">Poképaradas: 0</span>
+          <span style="color:orange">Accesos: 0</span>
+        </div>
+      </div>
+
+      <!-- Contenedor de imágenes -->
+      <div id="filesList">
+      </div>
+
+      <!-- Botón guardar -->
+      <div style="margin-top:15px;text-align:right;">
+        <button id="btnGuardarFotos" class="primary">Guardar Fotos en BD</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- 🎨 SECCIÓN 2: COLLAGE -->
+  <div class="section-card">
+    <div class="section-header">
+      <h2>2.- Generador de Collage</h2>
+      <button class="toggle-btn">−</button>
+    </div>
+    <div class="section-content">
+      <p>Genera un collage con las imágenes guardadas en <b>SesionesTemporales</b>.</p>
+
+      <div style="text-align:center;margin-top:10px;">
+        <button id="btnGenerarCollage" class="poke">🎨 Generar Collage</button>
+      </div>
+
+      <div id="collagePreview" style="margin-top:20px;text-align:center;"></div>
+    </div>
+  </div>
+
+
+ <!-- 📍 SECCIÓN 3: UBICACIONES -->
+<div class="section-card">
+  <div class="section-header">
+    <h2>3.- Guardar Ubicaciones</h2>
+    <button class="toggle-btn">−</button>
+  </div>
+  <div class="section-content">
+
+    <!-- Botón principal -->
+    <div style="margin-bottom:10px;">
+      <button id="btnGuardarCoordenada" class="poke">📍 Guardar Coordenada Actual</button>
+    </div>
+
+    <!-- Contenedor donde aparecerán las ubicaciones guardadas -->
+    <div id="ubicacionesList" style="display:flex;flex-direction:column;gap:15px;"></div>
+
+  </div>
+</div>
+
+
+<!-- 📋 SECCIÓN 4: PROPUESTAS -->
+<div class="section-card">
+  <div class="section-header">
+    <h2>4.- Generar Propuestas</h2> <button class="toggle-btn">−</button>
+  </div>
+  <div class="section-content">
+    
+    <div class="modo-propuesta" style="margin-bottom:15px; display:flex; gap: 20px;">
+      <label style="cursor:pointer; color: #fff;">
+        <input type="radio" name="modoPropuesta" id="modoManual" value="manual" checked>
+        Modo Manual
+      </label>
+      <label style="cursor:pointer; color: #fff;">
+        <input type="radio" name="modoPropuesta" id="modoGemini" value="gemini">
+        Modo Automático (Gemini)
+      </label>
+    </div>
+
+    <div id="contenedorModoManual">
+      <p>Pega aquí las propuestas (título y descripción).</p>
+      <textarea id="inputPropuestas" placeholder="Ejemplo:
+🖼️ Propuesta 1
+Título: Parque Central
+Descripción: ..." 
+        style="width:100%;min-height:120px;border-radius:8px;padding:8px;"></textarea>
+      <div style="margin-top:10px;text-align:right;">
+        <button id="btnGuardarPropuestasManual" class="primary">💾 Guardar Propuestas Manuales</button>
+      </div>
+    </div>
+
+    <div id="contenedorModoGemini" style="display:none;">
+      <p>Se usará el collage de la <b>Sección 2</b> para generar las propuestas automáticamente.</p>
+      <div style="margin-top:10px;text-align:right;">
+        <button id="btnGenerarConGemini" class="primary poke">🤖 Generar y Guardar con IA</button>
+      </div>
+    </div>
+
+    <div id="listaPropuestas" style="margin-top:20px;display:flex;flex-direction:column;gap:10px;"></div>
+
+  </div>
+</div>
+
+<!-- =================================================== -->
+<!-- 🧩 SECCIÓN 5 — Mostrar Propuestas -->
+<!-- =================================================== -->
+<div class="section-card" id="seccion5">
+  <div class="section-header">
+    <h2>📋 Sección 5 — Mostrar Propuestas</h2>
+    <button class="toggle-btn">−</button>
+  </div>
+
+  <div class="section-content">
+    <button id="btnGenerarPropuestas" class="primary">⚙️ Mostrar propuestas</button>
+    <p id="contadorPropuestas" style="margin-top:8px;color:#8ff;"></p>
+
+    <!-- Contenedor donde se insertarán las tarjetas -->
+    <div id="resultadosContainer" style="margin-top:15px;display:flex;flex-direction:column;gap:16px;">
+
+  
+   
+      <!-- Fin tarjeta -->
+    </div>
+  </div>
+</div>
+
+
+    
+
+ <!-- MODAL MAPA (selector de coordenadas) -->
+<div id="mapModal" class="modal-map" style="display:none;">
+  <div class="modal-map-content">
+    <div id="map-canvas" class="modal-map-iframe"></div>
+    <div class="modal-map-buttons">
+      <button id="map-btn-guardar" class="primary">Guardar ubicación</button>
+      <button id="map-btn-cancelar" class="poke">Cancelar</button>
+    </div>
+  </div>
+</div>
+
+<!-- MODAL EDITAR (simple para Tab 1) -->
+<div id="modal-editar" class="modal-editar">
+  <div class="modal-editar-contenido">
+    <span id="modal-editar-cerrar" class="modal-editar-cerrar">&times;</span>
+    <h2>Editar Propuesta</h2>
+    <p class="subtexto-modal">Actualiza los campos y, si deseas, elige una ubicación en el mapa.</p>
+    <hr>
+
+    <div class="form-group">
+      <label for="t1-edit-titulo">Título</label>
+      <input type="text" id="t1-edit-titulo" placeholder="Título de la propuesta">
+    </div>
+
+    <div class="form-group">
+      <label for="t1-edit-descripcion">Descripción</label>
+      <input type="text" id="t1-edit-descripcion" placeholder="Descripción (2-3 líneas)">
+    </div>
+
+    <div class="form-group">
+      <label for="t1-edit-wayfarer">Descripción para Wayfarer</label>
+      <input type="text" id="t1-edit-wayfarer" placeholder="Resumen para jugadores">
+    </div>
+
+    <div class="form-group">
+      <label for="t1-edit-coordenadas">Coordenadas (lat, lng)</label>
+      <div class="form-row-reubicacion">
+        <input type="text" id="t1-edit-coordenadas" placeholder="-11.999999, -77.111111">
+        <button id="t1-edit-abrir-mapa" class="secondary btn-ver-mapa">Elegir en mapa</button>
+      </div>
+    </div>
+
+    <div class="modal-editar-botones">
+      <button id="t1-btn-guardar-edicion" class="btn-primario">Guardar cambios</button>
+      <button id="t1-btn-cancelar-edicion" class="btn-secundario">Cancelar</button>
+    </div>
+  </div>
+</div>
+
+
+</div>
+
+
+<!-- ✅ MODAL PARA VER MAPA SATELITAL (GRANDE) -->
+<!-- ✅ MODAL DE MAPA ADAPTADO DE TAB2 -->
+<div id="mapModalMiniatura" class="modal" style="display:none;">
+  <div class="modal-content">
+    <span id="mapMiniatura-btn-cerrar" class="modal-close">&times;</span>
+    <h2>Vista de Ubicación</h2>
+    <div id="map-canvas-miniatura" style="width:100%; height:400px; border-radius:12px;"></div>
+  </div>
+</div>
+
+  </div>
+</div>
+
+
+<script>
+document.getElementById("cerrarMapaSat").onclick = () => {
+  document.getElementById("modalMapaSat").style.display = "none";
+};
+</script>

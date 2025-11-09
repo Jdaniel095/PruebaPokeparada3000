@@ -1,0 +1,68 @@
+Estructura de la carpeta pokeparadas-web
+pokeparadas-web/
+│
+├── index.html                   <-- Página principal con el menú de pestañas
+├── css/
+│   └── main.css                 <-- Estilos generales, responsive y amigables
+├── js/
+│   ├── main.js                  <-- Script que controla el cambio de pestañas
+│   ├── tab1_generate.js         <-- Lógica de la pestaña Generar
+│   ├── tab2_manage.js           <-- Lógica de la pestaña Gestionar
+│   ├── tab3_history.js          <-- Lógica de la pestaña Historial
+│   └── config.js                <-- CLIENT_ID y SPREADSHEET_ID
+├── assets/
+│   ├── favicon.png
+│   └── ...otras imágenes
+└── tabs/
+    ├── tab1_generate/
+    │   ├── index.html           <-- HTML principal de Generar
+    ├── tab2_manage/
+    │   ├── index.html           <-- HTML principal de Gestionar
+    └── tab3_history/
+        ├── index.html           <-- HTML principal de Historial
+
+
+Cada .html dentro de tabs/ corresponde a una pestaña.
+
+Cada .js dentro de js/ controla la funcionalidad de su pestaña.
+
+config.js contendrá tu CLIENT_ID de OAuth2 y SPREADSHEET_ID de Google Sheets.
+
+2️⃣ Estructura inicial de la hoja de cálculo PokeparadasDB
+
+Hicimos varias pestañas, para empezar:
+
+SesionesTemporales
+NombreSesion	NumeroPropuesta	HoraGuardado	Titulo	Descripcion	Wayfarer	Categoria	Lat	Lng	Direccion	CooTitulo	FotoPrincipalID  FotoAccesoID
+HistorialDeSesiones
+NombreSesion	HoraGuardado	NumeroPropuesta	Titulo	Descripcion	Wayfarer	Categoria	Direccion	Lat	Lng	Estado	FotoPrincipalID	FotoAccesoID
+PokeparadasExistentes
+IDSesion	Titulo	Categoria	Lat	Lng	Direccion	Estado	HistorialCoordenadas	FotoPrincipalID
+
+
+
+
+
+
+
+
+Quiero que siempre me entregues las propuestas con este formato exacto, sin agregar explicaciones, emojis extra ni texto adicional fuera del formato.  
+Cada propuesta debe seguir este modelo:
+
+🖼️ Propuesta 1
+Título: [nombre del lugar]
+Descripción: [explicación del lugar en 2-3 líneas, lenguaje natural y descriptivo]
+Descripción para Wayfarer: [versión resumida orientada a jugadores, sin bromas ni ironía]
+
+🖼️ Propuesta 2
+Título: [...]
+Descripción: [...]
+Descripción para Wayfarer: [...]
+
+Y así sucesivamente.  
+No uses numeración romana ni símbolos distintos.  
+Cada campo debe comenzar exactamente con:
+“Título:”, “Descripción:” y “Descripción para Wayfarer:”
+con mayúsculas, acentos y formato idéntico.  
+No incluyas ningún otro texto ni notas adicionales.
+
