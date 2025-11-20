@@ -193,13 +193,22 @@ function setupSesionFunctions() {
   const btnGuardarSesion = document.getElementById("btnGuardarSesion");
   if (!inputSesion || !btnGuardarSesion) return;
 
-  btnGuardarSesion.addEventListener("click", () => {
-    const nombre = inputSesion.value.trim();
-    if (!nombre) return alert("⚠️ Ingresa un nombre para la sesión antes de guardar.");
-    nombreSesionActual = nombre;
-    localStorage.setItem("nombreSesionTemporal", nombre);
+btnGuardarSesion.addEventListener("click", () => {
+  const nombre = inputSesion.value.trim();
+  if (!nombre) return alert("⚠️ Ingresa un nombre para la sesión antes de guardar.");
+
+  // 👇 Cierra el teclado antes del alert
+  inputSesion.blur();  
+
+  nombreSesionActual = nombre;
+  localStorage.setItem("nombreSesionTemporal", nombre);
+
+  // 👇 Delay evita freeze en Safari iOS
+  setTimeout(() => {
     alert(`✅ Sesión guardada: "${nombreSesionActual}"`);
-  });
+  }, 150);
+});
+
 
   const saved = localStorage.getItem("nombreSesionTemporal");
   if (saved) {
@@ -1309,6 +1318,8 @@ function initMapMiniTab1(coord) {
     map.setCenter({ lat, lng });
   }, 300);
 }
+
+
 
 
 
